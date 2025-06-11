@@ -3,6 +3,7 @@
       "builder": "npm",
       "buildCommand": "npm run build",
       "publishPath": "dist"
-    }
+    },
+    "startCommand": "npx serve dist"
   }
   
