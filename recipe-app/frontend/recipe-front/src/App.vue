@@ -136,7 +136,7 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import RecipeList from './components/RecipeList.vue'
 import RecipeForm from './components/RecipeForm.vue'
@@ -158,7 +158,7 @@ const alert = ref({
 })
 
 // URL de base de l'API
-const API_BASE_URL = 'http://localhost:8000/api/recipes'
+const API_BASE_URL = 'https://recipe-app-production-1878.up.railway.app/api/recipes'
 
 // Recettes filtrées
 const filteredRecipes = computed(() => {
@@ -188,7 +188,7 @@ const filteredRecipes = computed(() => {
 })
 
 // Fonction pour afficher une alerte
-const showAlert = (type, message) => {
+const showAlert = (type: string, message: string) => {
   alert.value = {
     show: true,
     type,
@@ -230,14 +230,14 @@ const showAddForm = () => {
 }
 
 // Gérer l'édition d'une recette
-const handleEditRecipe = (recipe) => {
+const handleEditRecipe = (recipe: any) => {
   selectedRecipe.value = { ...recipe }
   isEditing.value = true
   showForm.value = true
 }
 
 // Gérer la sauvegarde d'une recette
-const handleSaveRecipe = async (recipeData) => {
+const handleSaveRecipe = async (recipeData: any) => {
   try {
     let response
     
@@ -266,7 +266,7 @@ const handleSaveRecipe = async (recipeData) => {
     const savedRecipe = await response.json()
     
     if (isEditing.value) {
-      const index = recipes.value.findIndex(r => r.id === savedRecipe.id)
+      const index = recipes.value.findIndex((r: any) => r.id === savedRecipe.id)
       if (index !== -1) {
         recipes.value[index] = savedRecipe
       }
@@ -294,7 +294,7 @@ const handleCancelForm = () => {
 }
 
 // Gérer la suppression d'une recette
-const handleDeleteRecipe = async (recipeId) => {
+const handleDeleteRecipe = async (recipeId: number) => {
   try {
     const response = await fetch(`${API_BASE_URL}/${recipeId}`, {
       method: 'DELETE'
@@ -304,7 +304,7 @@ const handleDeleteRecipe = async (recipeId) => {
       throw new Error(`Erreur HTTP: ${response.status}`)
     }
 
-    recipes.value = recipes.value.filter(recipe => recipe.id !== recipeId)
+    recipes.value = recipes.value.filter((recipe: any) => recipe.id !== recipeId)
     showAlert('success', '🗑️ Recette supprimée')
 
   } catch (error) {
@@ -314,7 +314,7 @@ const handleDeleteRecipe = async (recipeId) => {
 }
 
 // Gérer les erreurs des composants enfants
-const handleError = (message) => {
+const handleError = (message: string) => {
   showAlert('error', message)
 }
 
