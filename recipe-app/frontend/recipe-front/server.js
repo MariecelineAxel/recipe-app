@@ -7,10 +7,10 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-// Servir les fichiers statiques depuis le dossier dist
+// Servir les fichiers statiques depuis dist
 app.use(express.static(join(__dirname, 'dist')));
 
-// Rediriger toutes les requêtes vers index.html
+// Route catch-all pour index.html
 app.get('*', (req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'), { 
     headers: { 'Content-Type': 'text/html' }
