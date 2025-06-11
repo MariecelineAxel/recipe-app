@@ -1,8 +1,7 @@
 {
     "build": {
-      "builder": "npm",
       "buildCommand": "npm run build",
-      "publishPath": "dist"
+      "publishDir": "dist"
     },
     "startCommand": "npx serve dist"
   }
