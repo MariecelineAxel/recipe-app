@@ -1,5 +1,9 @@
+import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
 export default defineConfig({
-  base: './', // ← ajoute cette ligne
+  base: './', // <<--- IMPORTANT
   plugins: [vue()],
   resolve: {
     alias: {
@@ -14,4 +18,4 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
   },
-});
+})
